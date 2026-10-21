@@ -56,7 +56,7 @@ async function asyncGetUsers() {
             return data.email.toLowerCase();
         });
 
-        console.log("\nThen function");
+        console.log("\nAsync function");
         console.log(users);
     } catch (err) {
         console.log(err.message);
