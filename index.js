@@ -47,15 +47,20 @@ function toLowerWithoutBuiltIn(str) {
 
 async function asyncGetUsers() {
 
-    const raw_data = await fetch("https://jsonplaceholder.typicode.com/users");
-    let users = await raw_data.json();
+    try {
 
-    users = users.map((data) => {
-        return data.email.toLowerCase();
-    });
+        const raw_data = await fetch("https://jsonplaceholder.typicode.com/users");
+        let users = await raw_data.json();
 
-    console.log("\nThen function");
-    console.log(users);
+        users = users.map((data) => {
+            return data.email.toLowerCase();
+        });
+
+        console.log("\nThen function");
+        console.log(users);
+    } catch (err) {
+        console.log(err.message);
+    }
 
 
 }
@@ -72,6 +77,9 @@ function thenGetUsers() {
             console.log("\nThen function");
             console.log(users);
 
+        })
+        .catch((err) => {
+            console.log(err);
         });
 }
 
