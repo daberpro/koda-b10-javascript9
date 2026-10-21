@@ -31,9 +31,9 @@ function toLowerWithoutBuiltIn(str) {
         "Z": "z",
     };
 
-    for(let i = 0; i < str.length; i++){
+    for (let i = 0; i < str.length; i++) {
         const char_from_strings = strings[str[i]];
-        if(char_from_strings){
+        if (char_from_strings) {
             result += char_from_strings;
             continue;
         }
@@ -51,14 +51,12 @@ async function asyncGetUsers() {
     let users = await raw_data.json();
 
     users = users.map((data) => {
-        data.email = data.email.toLowerCase();
-        return data;
+        return data.email.toLowerCase();
     });
 
-    console.log("\nAsync function");
-    for (let { name, username, email } of users) {
-        console.log(`Name: ${name}, username: ${username}, email: ${email}`);
-    }
+    console.log("\nThen function");
+    console.log(users);
+
 
 }
 
@@ -68,14 +66,11 @@ function thenGetUsers() {
         .then(raw_data => raw_data.json())
         .then((users) => {
             users = users.map((data) => {
-                data.email = toLowerWithoutBuiltIn(data.email);
-                return data;
+                return toLowerWithoutBuiltIn(data.email);
             });
 
             console.log("\nThen function");
-            for (let { name, username, email } of users) {
-                console.log(`Name: ${name}, username: ${username}, email: ${email}`);
-            }
+            console.log(users);
 
         });
 }
